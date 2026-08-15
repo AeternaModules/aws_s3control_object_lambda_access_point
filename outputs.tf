@@ -16,7 +16,7 @@ output "s3control_object_lambda_access_points_arn" {
 }
 output "s3control_object_lambda_access_points_configuration" {
   description = "Map of configuration values across all s3control_object_lambda_access_points, keyed the same as var.s3control_object_lambda_access_points"
-  value       = { for k, v in aws_s3control_object_lambda_access_point.s3control_object_lambda_access_points : k => v.configuration if v.configuration != null && length(v.configuration) > 0 }
+  value       = { for k, v in aws_s3control_object_lambda_access_point.s3control_object_lambda_access_points : k => one(v.configuration) if v.configuration != null && length(v.configuration) > 0 }
 }
 output "s3control_object_lambda_access_points_name" {
   description = "Map of name values across all s3control_object_lambda_access_points, keyed the same as var.s3control_object_lambda_access_points"
